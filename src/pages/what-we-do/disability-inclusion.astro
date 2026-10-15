@@ -1,0 +1,508 @@
+---
+// what-we-do/disability-inclusion.astro - How we support persons with disabilities (PWDs)
+import Layout from "../../layouts/Layout.astro";
+
+const commitments = [
+  "Fully inclusive livelihood training programs",
+  "Partnerships with organizations of persons with disabilities (OPDs)",
+  "Accommodations that remove barriers to learning",
+  "Training linked to real economic opportunities",
+  "Advocacy for systemic change",
+];
+
+const approaches = [
+  {
+    icon: "fas fa-universal-access",
+    title: "Embed inclusion into our livelihood training",
+    lead: "Our training model is adapted so persons with disabilities are not left behind.",
+    points: [
+      {
+        label: "Universal design for learning.",
+        text: "Training materials come in accessible formats (large print, braille, audio, sign-language interpretation) and venues are physically accessible.",
+      },
+      {
+        label: "Flexible scheduling and delivery.",
+        text: "Modular, self-paced, or remote options are available for people who face mobility or health barriers.",
+      },
+      {
+        label: "Skills matching.",
+        text: "We focus on livelihood skills that fit participants' abilities and aspirations, such as digital skills, tailoring, agro-processing, or assistive-technology repair, rather than a one-size-fits-all curriculum.",
+      },
+    ],
+  },
+  {
+    icon: "fas fa-handshake",
+    title: "Partner with organizations of persons with disabilities (OPDs)",
+    lead: "We work with local and national OPDs, such as United Disabled Persons of Kenya (UDPK), to:",
+    points: [
+      {
+        label: "Co-design programs.",
+        text: "Training content reflects the real needs and priorities of persons with disabilities.",
+      },
+      {
+        label: "Reach participants.",
+        text: "OPD networks help us recruit persons with disabilities into livelihood programs.",
+      },
+      {
+        label: "Share resources.",
+        text: "We draw on OPD expertise in accessibility, advocacy, and community trust.",
+      },
+    ],
+  },
+  {
+    icon: "fas fa-store",
+    title: "Link training to economic empowerment",
+    lead: "Training alone is not enough. Persons with disabilities often face discrimination in hiring and self-employment.",
+    points: [
+      {
+        label: "Business development support.",
+        text: "We provide mentoring and market linkages for enterprises led by persons with disabilities.",
+      },
+      {
+        label: "Inclusive value chains.",
+        text: "We advocate so that persons with disabilities can reach markets, suppliers, and customers.",
+      },
+    ],
+  },
+  {
+    icon: "fas fa-chart-simple",
+    title: "Collect disability data and monitor inclusion",
+    lead: "We track progress so we can keep improving our programs.",
+    points: [
+      {
+        label: "Collect data.",
+        text: "We record disability status, type, and the barriers participants face.",
+      },
+      {
+        label: "Set inclusion targets.",
+        text: "For example, the share of participants with disabilities who enroll, complete training, and find work.",
+      },
+      {
+        label: "Use feedback.",
+        text: "What persons with disabilities tell us shapes how we design and deliver training.",
+      },
+    ],
+  },
+  {
+    icon: "fas fa-chalkboard-user",
+    title: "Build staff and partner capacity",
+    lead: "We invest, with our partners, in the people who deliver the work.",
+    points: [
+      {
+        label: "Disability-awareness training.",
+        text: "For our trainers, mentors, and administrative staff.",
+      },
+      {
+        label: "Inclusive safeguarding policies.",
+        text: "To protect persons with disabilities from abuse and exploitation.",
+      },
+      {
+        label: "Specialist partnerships.",
+        text: "Disability specialists give us ongoing technical support.",
+      },
+    ],
+  },
+  {
+    icon: "fas fa-bullhorn",
+    title: "Advocate for systemic change",
+    lead: "Beyond direct service delivery, we push for the conditions that make inclusion last.",
+    points: [
+      {
+        label: "Champion inclusive policies.",
+        text: "In Kenya and across Africa, including enforcement of the UN Convention on the Rights of Persons with Disabilities.",
+      },
+      {
+        label: "Share evidence.",
+        text: "We publish what works in livelihood training for persons with disabilities to influence donors and governments.",
+      },
+      {
+        label: "Amplify voices.",
+        text: "Persons with disabilities should be heard in decision-making forums on youth employment and economic development.",
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Disability Inclusion | ActionPath Africa"
+  description="How ActionPath Africa makes livelihood training inclusive for persons with disabilities: accessible delivery, OPD partnerships, economic linkages, and advocacy."
+>
+  <div class="pg">
+    <!-- HERO -->
+    <section class="hero">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <a href="/what-we-do">What We Do</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span>Disability Inclusion</span>
+      </nav>
+      <h1>Livelihood training that works for persons with disabilities</h1>
+      <p class="hero-lead">
+        We make our programs fully inclusive so persons with disabilities can
+        learn, earn, and lead on equal terms.
+      </p>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro">
+      <div class="intro-text">
+        <h2>How we support persons with disabilities (PWDs)</h2>
+        <div class="rule"></div>
+        <p>
+          We make our livelihood training programs fully inclusive, partner
+          with organizations of persons with disabilities, provide
+          accommodations, link training to economic opportunities, and
+          advocate for systemic change.
+        </p>
+      </div>
+      <ul class="commitments">
+        {
+          commitments.map((c) => (
+            <li>
+              <i class="fas fa-check" aria-hidden="true" />
+              <span>{c}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- APPROACHES -->
+    <section class="approaches">
+      <h2 class="approaches-title">How we put inclusion into practice</h2>
+      {
+        approaches.map((a) => (
+          <article class="row">
+            <header class="row-head">
+              <span class="row-icon">
+                <i class={a.icon} aria-hidden="true" />
+              </span>
+              <h3>{a.title}</h3>
+            </header>
+            <div class="row-body">
+              <p class="row-lead">{a.lead}</p>
+              <ul>
+                {a.points.map((p) => (
+                  <li>
+                    <strong>{p.label}</strong> {p.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </section>
+
+    <!-- BAND -->
+    <section class="band">
+      <p class="band-quote">
+        Because we already focus on youth livelihoods, extending that mission
+        to persons with disabilities is a natural, high-impact next step.
+      </p>
+      <div class="band-actions">
+        <a href="/contact" class="btn btn-primary">
+          <i class="fas fa-envelope" aria-hidden="true"></i> Partner with us
+        </a>
+        <a href="/what-we-do/gbv-safeguarding" class="btn btn-light">
+          Our safeguarding approach
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .pg {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green-mid: #1a8c1f;
+    --ink: #1e293b;
+    --ink-2: #334155;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .pg a:focus-visible {
+    outline: 3px solid var(--green-mid);
+    outline-offset: 3px;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    background: var(--ink);
+    color: white;
+    border-radius: 24px;
+    border-bottom: 4px solid var(--red);
+    padding: 3.5rem 3rem 3.25rem;
+    margin-bottom: 3.5rem;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 85% 40%,
+      rgba(192, 57, 43, 0.2) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+  .hero > * {
+    position: relative;
+    z-index: 1;
+  }
+  .crumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1.5rem;
+  }
+  .crumbs a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: #27f731;
+  }
+  .crumbs i {
+    font-size: 0.55rem;
+  }
+  .hero h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(2rem, 4.4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    max-width: 720px;
+    margin-bottom: 1.1rem;
+  }
+  .hero-lead {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 560px;
+  }
+
+  /* Intro */
+  .intro {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+  .intro h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .rule {
+    width: 56px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), #27ee31);
+    border-radius: 3px;
+    margin: 0.9rem 0 1.25rem;
+  }
+  .intro p {
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 58ch;
+  }
+  .commitments {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .commitments li {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-2);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .commitments i {
+    color: var(--green-mid);
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  /* Approaches */
+  .approaches {
+    margin-bottom: 4rem;
+  }
+  .approaches-title {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .row-head {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+  .row-icon {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--red-soft);
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  .row-head h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--ink);
+    padding-top: 0.15rem;
+  }
+  .row-lead {
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
+    max-width: 62ch;
+  }
+  .row-body ul {
+    list-style: none;
+  }
+  .row-body li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.6rem;
+    color: var(--ink-2);
+    font-size: 0.93rem;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+  .row-body li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-mid);
+  }
+  .row-body li strong {
+    color: var(--ink);
+  }
+
+  /* Band */
+  .band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+    background: var(--ink);
+    color: white;
+    border-radius: 28px;
+    padding: 3rem 3.25rem;
+    margin-bottom: 2rem;
+  }
+  .band-quote {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    max-width: 34ch;
+  }
+  .band-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: none;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn-primary {
+    background: var(--red);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: var(--red-dark);
+  }
+  .btn-light {
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    color: white;
+  }
+  .btn-light:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .pg {
+      padding: 1rem;
+    }
+    .hero {
+      padding: 2.5rem 1.5rem;
+    }
+    .intro {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .band {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2.25rem 1.75rem;
+    }
+    .band-actions {
+      width: 100%;
+    }
+  }
+</style>

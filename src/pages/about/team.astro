@@ -26,7 +26,7 @@ const team = [
     color: "red",
   },
   {
-    name: "Jane Mutave Munyalo",
+    name: "Jane Mutave",
     role: "Partners and Programs Lead",
     initials: "JM",
     tagline: "Connecting people, organisations, and purpose.",
@@ -70,6 +70,28 @@ const team = [
     icon: "fas fa-tractor",
     color: "red",
   },
+  {
+    name: "Dan Munyalo",
+    role: "Head of Legal Services",
+    initials: "DM",
+    tagline: "Embedding legal empowerment into every program we deliver.",
+    image: "/dan-photo.jpg",
+    bio: [
+      "Dan Munyalo is the Head of Legal Services at ActionPath Africa. With over three years of experience in the NGO sector, he specializes in legal advocacy and economic empowerment programmes.",
+      "He provides strategic legal support to ensure compliance, protect rights, and strengthen livelihoods for marginalized communities. His expertise includes policy advocacy, rights-based engagement, and integrating legal safeguards into entrepreneurship and vocational training initiatives.",
+      "Passionate about justice and sustainable development, Dan works across East Africa to embed legal empowerment into ActionPath Africa's programs, enabling communities to thrive with dignity and self-reliance.",
+    ],
+    specialisms: [
+      "Legal Advocacy",
+      "Policy Advocacy",
+      "Rights-Based Engagement",
+      "Compliance & Governance",
+      "Economic Empowerment Programmes",
+    ],
+    geographies: ["Kenya", "East Africa"],
+    icon: "fas fa-balance-scale",
+    color: "green",
+  },
 ];
 
 // Core Values (updated)
@@ -88,16 +110,6 @@ const coreValues = [
     icon: "fas fa-hands-helping",
     title: "Inclusivity",
     desc: "We design and deliver training programs that are accessible to diverse groups, including marginalized communities, women, and youth. This ensures equal opportunity and broadens the reach of our impact.",
-  },
-];
-
-// Supervisory Board
-const supervisoryBoard = [
-  {
-    name: "George Omondi Awuor",
-    title: "Secretary to the Board",
-    image: "/team/george-omondi-awuor1.jpg",
-    initials: "GO",
   },
 ];
 ---
@@ -166,51 +178,47 @@ const supervisoryBoard = [
         </p>
       </div>
 
-      <div class="team-list">
-        {team.map((member, idx) => (
-          <article class={`member-card ${idx % 2 === 1 ? "member-card--alt" : ""}`} key={member.name}>
-
-            <!-- Avatar panel with image -->
-            <div class={`member-avatar-panel ${member.color === "green" ? "panel-green" : "panel-red"}`}>
-              <div class="avatar-image">
-                <img src={member.image} alt={member.name} class="avatar-img" />
+      <div class="team-grid">
+        {team.map((member) => (
+          <article class="team-card" data-color={member.color} key={member.name}>
+            <div class="tc-top">
+              <div class="tc-photo-wrap">
+                <img src={member.image} alt={member.name} class="tc-photo" />
+                <div class="tc-icon"><i class={member.icon}></i></div>
               </div>
-              <div class="avatar-icon">
-                <i class={member.icon}></i>
-              </div>
-              <div class="member-specialisms">
-                <p class="spec-label">Specialisms</p>
-                <ul>
-                  {member.specialisms.map((s) => (
-                    <li key={s}><i class="fas fa-check"></i> {s}</li>
-                  ))}
-                </ul>
-              </div>
-              <div class="member-geo">
-                <p class="spec-label">Works in</p>
-                <div class="geo-tags">
-                  {member.geographies.map((g) => (
-                    <span class="geo-tag" key={g}>{g}</span>
-                  ))}
-                </div>
-              </div>
+              <h3 class="tc-name">{member.name}</h3>
+              <p class="tc-role">{member.role}</p>
+              <p class="tc-tagline">"{member.tagline}"</p>
             </div>
 
-            <!-- Bio panel -->
-            <div class="member-bio-panel">
-              <div class="member-header">
-                <h2 class="member-name">{member.name}</h2>
-                <p class="member-role">{member.role}</p>
-                <p class="member-tagline">"{member.tagline}"</p>
-              </div>
-              <div class="divider-left"></div>
-              <div class="member-bio">
+            <div class="tc-tags">
+              {member.specialisms.slice(0, 3).map((s) => (
+                <span class="tc-tag" key={s}>{s}</span>
+              ))}
+              {member.specialisms.length > 3 && (
+                <span class="tc-tag tc-tag-more">+{member.specialisms.length - 3} more</span>
+              )}
+            </div>
+
+            <details class="tc-details">
+              <summary>
+                <span>Read full bio</span>
+                <i class="fas fa-chevron-down"></i>
+              </summary>
+              <div class="tc-bio">
                 {member.bio.map((para) => (
                   <p key={para}>{para}</p>
                 ))}
+                <div class="tc-geo">
+                  <p class="spec-label">Works in</p>
+                  <div class="geo-tags">
+                    {member.geographies.map((g) => (
+                      <span class="geo-tag" key={g}>{g}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-
+            </details>
           </article>
         ))}
       </div>
@@ -232,29 +240,6 @@ const supervisoryBoard = [
             <div class="vc-icon"><i class={v.icon}></i></div>
             <h3>{v.title}</h3>
             <p>{v.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- SUPERVISORY BOARD SECTION -->
-    <section class="board-section">
-      <div class="section-header">
-        <div class="eyebrow red-eyebrow"><i class="fas fa-building"></i> Leadership</div>
-        <h2>Supervisory <span class="red-text">Board</span></h2>
-        <div class="divider-center"></div>
-        <p class="section-sub">
-          Providing strategic oversight and guidance to ensure we fulfill our mission.
-        </p>
-      </div>
-      <div class="board-grid">
-        {supervisoryBoard.map((member) => (
-          <div class="board-card" key={member.name}>
-            <div class="board-image">
-              <img src={member.image} alt={member.name} class="board-img" />
-            </div>
-            <h3 class="board-name">{member.name}</h3>
-            <p class="board-title">{member.title}</p>
           </div>
         ))}
       </div>
@@ -282,19 +267,19 @@ const supervisoryBoard = [
         </div>
         <div class="join-links">
           <p class="join-links-label">Explore what we do</p>
-          <a href="/services/training/entrepreneurship" class="jlink">
+          <a href="/what-we-do/training/entrepreneurship" class="jlink">
             <i class="fas fa-seedling"></i> Entrepreneurship & Climate <i class="fas fa-arrow-right jl-arrow"></i>
           </a>
-          <a href="/services/training/life-skills" class="jlink">
+          <a href="/what-we-do/training/life-skills" class="jlink">
             <i class="fas fa-users"></i> Life Skills & Employability <i class="fas fa-arrow-right jl-arrow"></i>
           </a>
-          <a href="/services/training/empowerment" class="jlink">
+          <a href="/what-we-do/training/empowerment" class="jlink">
             <i class="fas fa-female"></i> Youth & Women Empowerment <i class="fas fa-arrow-right jl-arrow"></i>
           </a>
-          <a href="/services/training/community-development" class="jlink">
+          <a href="/what-we-do/training/community-development" class="jlink">
             <i class="fas fa-building"></i> Community Development <i class="fas fa-arrow-right jl-arrow"></i>
           </a>
-          <a href="/services/consultancy" class="jlink jlink-all">
+          <a href="/what-we-do/consultancy" class="jlink jlink-all">
             <i class="fas fa-briefcase"></i> Consultancy Services <i class="fas fa-arrow-right jl-arrow"></i>
           </a>
         </div>
@@ -330,7 +315,7 @@ const supervisoryBoard = [
     --ease: all 0.25s ease;
   }
 
-  /* ── Hero ────────────────────────────────── */
+  /* Hero */
   .hero {
     position: relative;
     background: var(--charcoal);
@@ -374,7 +359,7 @@ const supervisoryBoard = [
     line-height: 1.75; max-width: 560px;
   }
 
-  /* ── Mission & Vision ──────────────────────── */
+  /* Mission & Vision */
   .mission-vision-section {
     margin-bottom: 4rem;
   }
@@ -420,7 +405,7 @@ const supervisoryBoard = [
     font-size: 0.95rem;
   }
 
-  /* ── Shared utilities ─────────────────────── */
+  /* Shared utilities */
   .eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: .72rem; font-weight: 700; letter-spacing: .08em;
@@ -464,118 +449,178 @@ const supervisoryBoard = [
   }
   .btn-outline-dark:hover { background: var(--charcoal); color: white; transform: translateY(-2px); }
 
-  /* ── Team intro ───────────────────────────── */
+  /* Team intro */
   .team-section { padding: 0 0 4rem; }
-  .team-intro { max-width: 720px; margin-bottom: 3.5rem; }
+  .team-intro { max-width: 720px; margin-bottom: 2.5rem; }
   .team-intro h2 { font-family: "Outfit", sans-serif; font-size: 1.95rem; font-weight: 800; letter-spacing: -.02em; color: var(--charcoal); margin-bottom: .4rem; }
   .team-intro p { font-size: .92rem; color: var(--gray-md); line-height: 1.78; }
 
-  /* ── Member cards ─────────────────────────── */
-  .team-list { display: flex; flex-direction: column; gap: 2.5rem; }
-
-  .member-card {
+  /* ══ Compact Team Grid ══ */
+  .team-grid {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    border-radius: 28px;
-    overflow: hidden;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .team-card {
+    background: white;
     border: 1px solid var(--border);
-    box-shadow: var(--sh-md);
+    border-radius: 22px;
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
     transition: var(--ease);
-  }
-  .member-card:hover { box-shadow: var(--sh-lg); transform: translateY(-3px); }
-
-  /* Alternate layout flips avatar to right */
-  .member-card--alt {
-    grid-template-columns: 1fr 280px;
-  }
-  .member-card--alt .member-avatar-panel {
-    order: 2;
-  }
-  .member-card--alt .member-bio-panel {
-    order: 1;
-  }
-
-  /* Avatar panel with image */
-  .member-avatar-panel {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 2.5rem 1.5rem;
-    gap: 1.25rem;
-  }
-  .panel-red { background: var(--charcoal); }
-  .panel-green { background: linear-gradient(160deg, #0f2318 0%, var(--charcoal) 100%); }
-
-  .avatar-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    position: relative;
     overflow: hidden;
-    border: 3px solid rgba(255,255,255,.2);
   }
-  .avatar-img {
+  .team-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s ease;
+  }
+  .team-card[data-color="green"]::before { background: var(--green); }
+  .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sh-lg);
+    border-color: transparent;
+  }
+  .team-card:hover::before { transform: scaleX(1); }
+
+  .tc-top { text-align: center; margin-bottom: 1.1rem; }
+
+  .tc-photo-wrap {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    margin: 0 auto .9rem;
+  }
+  .tc-photo {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
+    border: 3px solid var(--red-soft);
   }
-  .panel-red .avatar-image { border-color: var(--red); }
-  .panel-green .avatar-image { border-color: var(--green); }
+  .team-card[data-color="green"] .tc-photo { border-color: var(--green-soft); }
 
-  .avatar-icon {
-    width: 40px; height: 40px; border-radius: 12px;
+  .tc-icon {
+    position: absolute;
+    bottom: -2px; right: -2px;
+    width: 30px; height: 30px;
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
+    font-size: .78rem;
+    background: var(--red);
+    color: white;
+    border: 2px solid white;
   }
-  .panel-red .avatar-icon { background: rgba(192,57,43,.2); color: var(--red); }
-  .panel-green .avatar-icon { background: rgba(39,238,49,.12); color: var(--green-lt); }
+  .team-card[data-color="green"] .tc-icon { background: var(--green-mid); }
 
-  .member-specialisms { width: 100%; }
-  .spec-label {
-    font-size: .65rem; font-weight: 700; letter-spacing: .08em;
-    text-transform: uppercase; color: rgba(255,255,255,.35);
-    margin-bottom: .5rem;
+  .tc-name {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    letter-spacing: -.01em;
+    margin-bottom: .2rem;
   }
-  .member-specialisms ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-  .member-specialisms ul li {
-    font-size: .75rem; color: rgba(255,255,255,.7);
-    display: flex; align-items: center; gap: 7px; line-height: 1.4;
+  .tc-role {
+    font-size: .68rem;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: .55rem;
   }
-  .panel-red .member-specialisms ul li i { color: var(--red); font-size: .6rem; }
-  .panel-green .member-specialisms ul li i { color: var(--green-lt); font-size: .6rem; }
+  .team-card[data-color="green"] .tc-role { color: var(--green-mid); }
+  .tc-tagline {
+    font-size: .8rem;
+    color: var(--gray-md);
+    font-style: italic;
+    line-height: 1.5;
+  }
 
-  .member-geo { width: 100%; }
-  .geo-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: .5rem; }
+  .tc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .tc-tag {
+    font-size: .65rem;
+    font-weight: 600;
+    color: var(--gray-dk);
+    background: var(--gray-sf);
+    padding: .25rem .65rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+  }
+  .tc-tag-more {
+    color: var(--red);
+    background: var(--red-soft);
+    border-color: transparent;
+  }
+  .team-card[data-color="green"] .tc-tag-more { color: var(--green-mid); background: var(--green-soft); }
+
+  /* Expandable bio */
+  .tc-details {
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    padding-top: .85rem;
+  }
+  .tc-details summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--red);
+    user-select: none;
+  }
+  .team-card[data-color="green"] .tc-details summary { color: var(--green-mid); }
+  .tc-details summary::-webkit-details-marker { display: none; }
+  .tc-details summary i { font-size: .68rem; transition: transform .25s ease; }
+  .tc-details[open] summary i { transform: rotate(180deg); }
+
+  .tc-bio {
+    padding-top: .9rem;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    animation: bioFadeIn .3s ease;
+  }
+  @keyframes bioFadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .tc-bio p {
+    font-size: .8rem;
+    color: var(--gray-dk);
+    line-height: 1.7;
+  }
+  .tc-geo { margin-top: .3rem; }
+  .tc-geo .spec-label {
+    font-size: .62rem; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--gray-md); margin-bottom: .45rem;
+  }
+  .geo-tags { display: flex; flex-wrap: wrap; gap: 5px; }
   .geo-tag {
     font-size: .65rem; font-weight: 600;
-    padding: .18rem .55rem; border-radius: 20px;
+    padding: .18rem .6rem; border-radius: 20px;
+    background: var(--gray-sf); color: var(--gray-dk);
+    border: 1px solid var(--border);
   }
-  .panel-red .geo-tag { background: rgba(192,57,43,.2); color: rgba(255,255,255,.65); }
-  .panel-green .geo-tag { background: rgba(39,238,49,.12); color: rgba(255,255,255,.65); }
 
-  /* Bio panel */
-  .member-bio-panel {
-    background: white;
-    padding: 2.5rem;
-    display: flex; flex-direction: column;
-  }
-  .member-header { margin-bottom: .25rem; }
-  .member-name {
-    font-family: "Outfit", sans-serif;
-    font-size: 1.65rem; font-weight: 900;
-    letter-spacing: -.02em; color: var(--charcoal);
-    margin-bottom: .25rem;
-  }
-  .member-role {
-    font-size: .82rem; font-weight: 700;
-    color: var(--red); text-transform: uppercase;
-    letter-spacing: .05em; margin-bottom: .6rem;
-  }
-  .member-tagline {
-    font-size: .95rem; color: var(--gray-md);
-    font-style: italic; line-height: 1.5;
-  }
-  .member-bio { display: flex; flex-direction: column; gap: .85rem; }
-  .member-bio p { font-size: .88rem; color: var(--gray-dk); line-height: 1.78; }
-
-  /* ── Core Values ───────────────────────────────── */
+  /* Core Values */
   .values-section {
     padding: 3.5rem 2rem;
     background: var(--gray-sf);
@@ -598,57 +643,7 @@ const supervisoryBoard = [
   .value-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--charcoal); margin-bottom: .75rem; }
   .value-card p { font-size: .85rem; color: var(--gray-md); line-height: 1.6; }
 
-  /* ── Supervisory Board Section ─────────────────── */
-  .board-section {
-    padding: 3rem 0;
-    margin: 1.5rem 0;
-  }
-  .board-grid {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .board-card {
-    background: var(--white);
-    border-radius: 24px;
-    padding: 2rem;
-    text-align: center;
-    border: 1px solid var(--border);
-    transition: var(--ease);
-    width: 280px;
-  }
-  .board-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--sh-md);
-    border-color: var(--red);
-  }
-  .board-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 1.25rem;
-    border: 3px solid var(--red);
-  }
-  .board-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .board-name {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--charcoal);
-    margin-bottom: 0.5rem;
-  }
-  .board-title {
-    font-size: 0.8rem;
-    color: var(--red);
-    font-weight: 600;
-  }
-
-  /* ── Join section ─────────────────────────── */
+  /* Join section */
   .join-section {
     background: var(--charcoal); border-radius: 28px;
     margin: 2rem 0; overflow: hidden;
@@ -685,15 +680,8 @@ const supervisoryBoard = [
   .jlink-all:hover { background: rgba(192,57,43,.1); border-color: rgba(192,57,43,.5); color: #f4a59a; }
   .jlink-all i:first-child { color: var(--red); }
 
-  /* ── Responsive ───────────────────────────── */
+  /* Responsive */
   @media (max-width: 1024px) {
-    .member-card,
-    .member-card--alt { grid-template-columns: 1fr; }
-    .member-card--alt .member-avatar-panel,
-    .member-card--alt .member-bio-panel { order: unset; }
-    .member-avatar-panel { flex-direction: row; flex-wrap: wrap; gap: 1.25rem; padding: 1.75rem; align-items: flex-start; }
-    .avatar-image { width: 80px; height: 80px; }
-    .member-specialisms, .member-geo { flex: 1; min-width: 160px; }
     .values-grid { grid-template-columns: repeat(2, 1fr); }
     .join-inner { grid-template-columns: 1fr; }
     .join-links { border-left: none; border-top: 1px solid rgba(255,255,255,.08); }
@@ -703,17 +691,18 @@ const supervisoryBoard = [
   }
   @media (max-width: 768px) {
     .values-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   }
   @media (max-width: 640px) {
     .hero h1 { font-size: 2.4rem; }
     .hero { padding: 2.5rem 1.5rem; }
-    .team-intro, .member-bio-panel { padding: 1.5rem; }
-    .member-avatar-panel { padding: 1.5rem; }
+    .team-intro { padding: 0; }
     .join-text { padding: 2rem 1.5rem; }
     .join-links { padding: 1.5rem; }
     .join-actions { flex-direction: column; }
     .join-actions a { justify-content: center; }
     .team-page-container { padding: 0.5rem; }
     .mission-card, .vision-card { padding: 1.5rem; }
+    .team-grid { grid-template-columns: 1fr; }
   }
 </style>
